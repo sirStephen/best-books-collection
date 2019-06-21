@@ -1,11 +1,12 @@
 import React from 'react';
+import Table from './Table';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Best Books Collection</h1>
-    </div>
-  );
+    return (
+        <div className="container">
+            <Table />        
+        </div>
+    );
 }
 
 export default App;
