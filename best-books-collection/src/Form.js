@@ -5,7 +5,6 @@ export default class Form extends React.Component{
         super(props)
 
         this.initialState = {
-            name: '',
             bookName: '',
             author: '',
             year: ''
@@ -30,23 +29,16 @@ export default class Form extends React.Component{
     }
 
     render() {
-        const { name, bookName, author, year } = this.state;
+        const { bookName, author, year } = this.state;
 
         return(
             <form>
-                <label>Name</label>
-                <input
-                    type='text'
-                    name='name'
-                    value={name}
-                    onChange={this.handleChange}
-                />
-
                 <label>Book Name</label>
                 <input
                     type='text'
                     name='bookName'
                     value={bookName}
+                    placeholder="Book's Name"
                     onChange={this.handleChange}
                 />
 
@@ -55,6 +47,7 @@ export default class Form extends React.Component{
                     type='text'
                     name='author'
                     value={author}
+                    placeholder="Author's Name"
                     onChange={this.handleChange}
                 />
 
@@ -63,10 +56,12 @@ export default class Form extends React.Component{
                     type='number'
                     name='year'
                     value={year}
+                    placeholder="Year's Book"
                     onChange={this.handleChange}
                 />
 
                 <input
+                    className='accent-button'
                     type='button'
                     value='Submit'
                     onClick={this.submitForm}

@@ -6,13 +6,11 @@ export default class App extends React.Component {
     state = {
         characters: [
             {
-                name: 'Gregory',
                 bookName: 'The Rational Male',
                 author: 'Rollo Tomasi',
                 year: 2013
             },
             {
-                name: 'Charlie',
                 bookName: 'Two Year Eight Months and Twenty - Eight Night',
                 author: 'Salmon Rushdie',
                 year: 2015
@@ -41,6 +39,8 @@ export default class App extends React.Component {
     render() {
         return(
             <div className='container'>
+                <h1>Collection of Best Books</h1>
+                <p>Add a character and book details</p>
                 <Table 
                     characterData={this.state.characters}
                     removeCharacter={this.removeCharacter}

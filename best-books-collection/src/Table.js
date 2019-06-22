@@ -3,10 +3,10 @@ import React from 'react';
 const TableHeader = () => 
     <thead>
         <tr>
-            <th>Your Name</th>
             <th>Name Of Your Best Book</th>
             <th>Author's Name</th>
             <th>Year</th>
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -14,12 +14,14 @@ const TableBody = ({ characterData, removeCharacter }) => {
     const rows = characterData.map((row, index) => {
         return(
             <tr key={index}>
-                <td>{row.name}</td>
                 <td>{row.bookName}</td>
                 <td>{row.author}</td>
                 <td>{row.year}</td>
                 <td>
-                    <button onClick={() => removeCharacter(index)}>
+                    <button
+                        className="btn-red" 
+                        onClick={() => removeCharacter(index)}
+                    >
                         Delete
                     </button>
                 </td>
