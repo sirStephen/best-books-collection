@@ -4,13 +4,12 @@ export default class Form extends React.Component{
     constructor(props) {
         super(props)
 
-        this.initialState = {
+        this.state = {
             bookName: '',
             author: '',
-            year: ''
+            year: '',
+            modal: false
         }
-
-        this.state = this.initialState;
     }
 
     handleChange = (event) => {
@@ -21,52 +20,96 @@ export default class Form extends React.Component{
         })
     }
 
+    showModal = () => {
+        this.setState({
+            modal: true
+        })
+    }
+
+    hideModal = () => {
+        this.setState({
+            modal: false
+        })
+    }
+
     submitForm = () => {
         const { handleSubmit } = this.props;
 
         handleSubmit(this.state)
-        this.setState(this.initialState)
+        this.setState({
+            bookName: '',
+            author: '',
+            year: ''
+        })
     }
 
     render() {
-        const { bookName, author, year } = this.state;
+        const { bookName, author, year, modal } = this.state;
+
+        const showModal = modal === false ? 'display-none' : 'display-block modal';
 
         return(
-            <form>
-                <label>Book Name</label>
-                <input
-                    type='text'
-                    name='bookName'
-                    value={bookName}
-                    placeholder="Book's Name"
-                    onChange={this.handleChange}
-                />
+            <div>
+                <button 
+                    className='accent-button float-right'
+                    onClick={this.showModal}
+                    
+                >
+                    Add Book
+                </button>
 
-                <label>Author</label>
-                <input
-                    type='text'
-                    name='author'
-                    value={author}
-                    placeholder="Author's Name"
-                    onChange={this.handleChange}
-                />
+                <div className={showModal}>
+                    <div className={showModal}></div>
+                    <div className='modal-main'>
+                        <span
+                            className='cancel'
+                            onClick={this.hideModal}
+                        >
+                                &times;
+                        </span>
+                        <div className='title is-flex'>
+                            <h2 className='add-title'>Add Your Best Book</h2>
+                        </div>
 
-                <label>Year</label>
-                <input
-                    type='number'
-                    name='year'
-                    value={year}
-                    placeholder="Year's Book"
-                    onChange={this.handleChange}
-                />
+                        <form>
+                            <label>Book Name</label>
+                            <input
+                                type='text'
+                                name='bookName'
+                                value={bookName}
+                                placeholder="Name Of Book"
+                                onChange={this.handleChange}
+                            />
 
-                <input
-                    className='accent-button'
-                    type='button'
-                    value='Submit'
-                    onClick={this.submitForm}
-                />
-            </form>
+                            <label>Author</label>
+                            <input
+                                type='text'
+                                name='author'
+                                value={author}
+                                placeholder="Author's Name"
+                                onChange={this.handleChange}
+                            />
+
+                            <label>Year</label>
+                            <input
+                                type='number'
+                                name='year'
+                                value={year}
+                                placeholder="Year Of Book"
+                                onChange={this.handleChange}
+                            />
+
+                            <input
+                                className='accent-button float-right'
+                                type='button'
+                                value='Submit'
+                                onClick={this.submitForm}
+                            />
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
         )
     }
 }

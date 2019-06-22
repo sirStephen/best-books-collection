@@ -3,8 +3,8 @@ import React from 'react';
 const TableHeader = () => 
     <thead>
         <tr>
-            <th>Name Of Your Best Book</th>
-            <th>Author's Name</th>
+            <th>Book Name</th>
+            <th>Author</th>
             <th>Year</th>
             <th>Delete</th>
         </tr>
@@ -32,18 +32,16 @@ const TableBody = ({ characterData, removeCharacter }) => {
     return <tbody>{rows}</tbody>
 }
 
-export default class Table extends React.Component {
-    render() {
-        const { characterData, removeCharacter } = this.props;
-        
-        return (
+export default function Table ({ characterData, removeCharacter }) {
+    return (
+        <div>
             <table>
                 <TableHeader />
                 <TableBody 
                     characterData={characterData}
                     removeCharacter={removeCharacter}
-                />    
+                />
             </table>
-        )
-    }
+        </div>
+    )
 }
