@@ -39,8 +39,9 @@ export default class App extends React.Component {
     render() {
         return(
             <div className='container'>
-                <h1>Collection of Best Books</h1>
+                <h1 className='has-green'>Collection of Best Books</h1>
                 <p>Add a character and book details</p>
+            
                 <Table 
                     characterData={this.state.characters}
                     removeCharacter={this.removeCharacter}
