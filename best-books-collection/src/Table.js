@@ -10,28 +10,37 @@ const TableHeader = () =>
         </tr>
     </thead>
 
-const TableBody = () => 
-    <tbody>
-        <tr>
-            <td>Charlie</td>
-            <td>Two Year Eight Months and Twenty - Eight Night</td>
-            <td>Salmon Rushdie</td>
-            <td>1900</td>
-        </tr>
-        <tr>
-            <td>Gregory</td>
-            <td>The Red Sari</td>
-            <td>Javier Moro</td>
-            <td>1900</td>
-        </tr>
-    </tbody>
+const TableBody = ({ characterData, removeCharacter }) => {
+    const rows = characterData.map((row, index) => {
+        return(
+            <tr key={index}>
+                <td>{row.name}</td>
+                <td>{row.bookName}</td>
+                <td>{row.author}</td>
+                <td>{row.year}</td>
+                <td>
+                    <button onClick={() => removeCharacter(index)}>
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        )
+    })
+
+    return <tbody>{rows}</tbody>
+}
 
 export default class Table extends React.Component {
     render() {
+        const { characterData, removeCharacter } = this.props;
+        
         return (
             <table>
                 <TableHeader />
-                <TableBody />    
+                <TableBody 
+                    characterData={characterData}
+                    removeCharacter={removeCharacter}
+                />    
             </table>
         )
     }
