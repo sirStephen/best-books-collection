@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from './Table';
 import Form from './Form';
+import Search from './Search';
 
 export default class App extends React.Component {
     state = {
@@ -37,13 +38,21 @@ export default class App extends React.Component {
     }
     
     render() {
+        const { characters } = this.state;
+
         return(
             <div className='container'>
-                <h1 className='has-green'>Collection of Best Books</h1>
-                <p>Add a character and book details</p>
-            
+                <div className='is-flex space-between p-8'>
+                    <h1 className='has-green no-margin'>Collection of Best Books</h1>
+                    <Search 
+                        characterData={characters}
+                    />
+                </div>
+
+                <p className='no-margin p-8'>Add a character and book details</p>
+                
                 <Table 
-                    characterData={this.state.characters}
+                    characterData={characters}
                     removeCharacter={this.removeCharacter}
                 />
                 <Form handleSubmit={this.handleSubmit} />
